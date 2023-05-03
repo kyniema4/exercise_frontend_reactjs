@@ -4,16 +4,14 @@ import { GameAttribute } from "../../model/GameAttribute";
 export default  (data:any):GameAttribute[] =>{
     console.log('game called')
     var arr:GameAttribute[] = []
-    for(var key in data){
-        if(key ==='home' || key==='away'){
-
-            for(var keyName in data[key]){
-                arr.push({
-                    keyName: keyName,
-                    value: data[key][keyName]
-                })
-            }
-
+    if(!!data['game']){
+        const {game}= data;
+        console.log('game',game)
+        for(var key of game){
+            arr.push({
+                keyName: key,
+                value: game[key]
+            })
         }
     }
 
