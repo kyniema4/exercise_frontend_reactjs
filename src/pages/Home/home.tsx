@@ -10,7 +10,7 @@ import { GameAttribute } from '../../model/GameAttribute';
 const Home =() => {
 
   const [gameData, setGameData] = useState<GameAttribute[]>([]);
-  const [teamData, setTeamData] = useState<GameAttribute[]>([]);
+  const [teamHomeData, setTeamHomeData] = useState<GameAttribute[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -23,7 +23,7 @@ const Home =() => {
   const pairAll = (data ={}) => {
     const game = pairDataForGame(data );
     setGameData(game);
-    
+    // const homeData = 
   }
   
 
