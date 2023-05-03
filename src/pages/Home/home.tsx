@@ -5,22 +5,20 @@ import type { ColumnsType } from 'antd/es/table';
 import { getAllDiscrepancies } from '../../utils/api/api';
 import pairDataForGame from '../../utils/pair/pairDataForGame';
 import { GameAttribute } from '../../model/GameAttribute';
-interface DataType {
-  key: string;
-  title: string;
-  type: string;
-}
+
 
 const Home =() => {
 
   const [gameData, setGameData] = useState<GameAttribute[]>([]);
+  const [teamData, setTeamData] = useState<GameAttribute[]>([]);
 
   useEffect(() => {
     console.log('mounted');
     getAllDiscrepancies().then(result=>{
-      console.log(result);
+      // console.log(result);
+      pairAll(result);
     })
-  });
+  },[]);
 
   const pairAll = (data ={}) => {
     const game = pairDataForGame(data );
@@ -29,17 +27,17 @@ const Home =() => {
   }
   
 
-  const columns: ColumnsType<DataType> = [
+  const columns: ColumnsType<GameAttribute> = [
     {
       title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
+      dataIndex: 'keyName',
+      key: 'keyName',
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Type',
+      title: 'discrepancy value',
       key: 'type',
-      dataIndex: 'type',
+      dataIndex: 'value',
     },
     // {
     //   title: 'Action',
@@ -52,28 +50,11 @@ const Home =() => {
     // },
   ];
 
-  const data: DataType[] = [
-    {
-      key: '1',
-      title: 'John Brown',
-      type: 'Team',
-    },
-    {
-      key: '2',
-      title: 'Jim Green',
-      type: 'Player',
-    },
-    {
-      key: '3',
-      title: 'Joe Black',
-      type: 'Group',
-    },
-  ];
   return (
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> All discrepancies </p>
       <div className='px-5 my-5'>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={gameData} />
       </div>
     </div>
   );

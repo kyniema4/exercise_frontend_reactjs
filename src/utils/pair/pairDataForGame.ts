@@ -1,10 +1,15 @@
 import { GameAttribute } from "../../model/GameAttribute";
-import { Player } from "../../model/Player";
+
 
 export default  (data:any):GameAttribute[] =>{
+    console.log('game called')
     var arr:GameAttribute[] = []
-    if(!!data['Game']){
-        
+    for(var key in data){
+        if(key ==='home' || key==='away'){
+
+
+            
+        }
     }
 
     return arr;
