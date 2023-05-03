@@ -5,12 +5,17 @@ import type { ColumnsType } from 'antd/es/table';
 import { getAllDiscrepancies } from '../../utils/api/api';
 import pairDataForGame from '../../utils/pair/pairDataForGame';
 import { GameAttribute } from '../../model/GameAttribute';
+import pairDataForTeam from '../../utils/pair/pairDataForTeam';
+import { Player } from '../../model/Player';
 
 
 const Home =() => {
 
   const [gameData, setGameData] = useState<GameAttribute[]>([]);
   const [teamHomeData, setTeamHomeData] = useState<GameAttribute[]>([]);
+  const [teamAwayData, setTeamAwayData] = useState<GameAttribute[]>([]);
+
+  const [homePlayersData, setHomePlayerData] = useState<Player[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -23,7 +28,12 @@ const Home =() => {
   const pairAll = (data ={}) => {
     const game = pairDataForGame(data );
     setGameData(game);
-    // const homeData = 
+
+    const homeData = pairDataForTeam(data, 'home');
+    setTeamHomeData (homeData);
+
+    const awayData = pairDataForTeam(data, 'away');
+    setTeamAwayData(awayData);
   }
   
 
@@ -36,7 +46,7 @@ const Home =() => {
     },
     {
       title: 'discrepancy value',
-      key: 'type',
+      key: 'value',
       dataIndex: 'value',
     },
     // {
