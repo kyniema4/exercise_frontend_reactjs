@@ -7,6 +7,7 @@ import pairDataForGame from '../../utils/pair/pairDataForGame';
 import { GameAttribute } from '../../model/GameAttribute';
 import pairDataForTeam from '../../utils/pair/pairDataForTeam';
 import { Player } from '../../model/Player';
+import pairDataForPlayer from '../../utils/pair/pairDataForPlayer';
 
 
 const Home =() => {
@@ -16,6 +17,7 @@ const Home =() => {
   const [teamAwayData, setTeamAwayData] = useState<GameAttribute[]>([]);
 
   const [homePlayersData, setHomePlayerData] = useState<Player[]>([]);
+  const [awayPlayersData, setAwayPlayerData] = useState<Player[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -25,7 +27,7 @@ const Home =() => {
     })
   },[]);
 
-  const pairAll = (data ={}) => {
+  const pairAll = (data:any) => {
     const game = pairDataForGame(data );
     setGameData(game);
 
@@ -34,6 +36,9 @@ const Home =() => {
 
     const awayData = pairDataForTeam(data, 'away');
     setTeamAwayData(awayData);
+
+    setHomePlayerData(pairDataForPlayer(data['homePlayers'] ))
+    setAwayPlayerData(pairDataForPlayer(data['awayPlayers']))
   }
   
 

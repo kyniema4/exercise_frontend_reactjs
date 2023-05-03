@@ -1,9 +1,9 @@
 import { Player } from "../../model/Player";
 
-export default  (data:any) =>{
-    var arr:Player[] = []
-    for(var key in data){
-
+export default  (players:any):Player[] =>{
+    var arr:Player[] = [];
+    for(var player of players){
+        arr.push(player);
     }
 
     return arr;
