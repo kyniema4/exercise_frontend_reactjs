@@ -7,17 +7,17 @@ export function getBaseUrl() {
 }
 
 export async function getAllDiscrepancies(data = {}) {
-    return request.post(ApiList.All, data);
+    return request.get(ApiList.All, data);
 }
 
 export async function getDiscrepanciesByPlayer(data = {}) {
-    return request.post(ApiList.Player, data);
+    return request.get(ApiList.Player, data);
 }
 
 export async function getDiscrepanciesByGame(data = {}) {
-    return request.post(ApiList.Game, data);
+    return request.get(ApiList.Game, data);
 }
 
 export async function getDiscrepanciesByTeam(data = {}) {
-    return request.post(ApiList.Team, data);
+    return request.get(ApiList.Team, data);
 }

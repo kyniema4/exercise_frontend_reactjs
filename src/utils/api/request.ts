@@ -1,4 +1,4 @@
-import { url } from './baseUrl';
+import { url } from './baseurl'
 import axios from 'axios'
 
 // config aioxs

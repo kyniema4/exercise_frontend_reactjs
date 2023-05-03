@@ -11,7 +11,7 @@ interface DataType {
   tags: string[];
 }
 
-function Game() {
+const Game = () =>{
   const columns: ColumnsType<DataType> = [
     {
       title: 'Team',

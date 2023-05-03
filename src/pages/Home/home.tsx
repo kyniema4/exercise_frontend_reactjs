@@ -2,13 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { getAllDiscrepancies } from '../../utils/api/api';
+import pairDataForGame from '../../utils/pair/pairDataForGame';
+import { GameAttribute } from '../../model/GameAttribute';
 interface DataType {
   key: string;
   title: string;
   type: string;
 }
 
-function Home() {
+const Home =() => {
+
+  const [gameData, setGameData] = useState<GameAttribute[]>([]);
+
+  useEffect(() => {
+    console.log('mounted');
+    getAllDiscrepancies().then(result=>{
+      console.log(result);
+    })
+  });
+
+  const pairAll = (data ={}) => {
+    const game = pairDataForGame(data );
+    setGameData(game);
+    
+  }
+  
+
   const columns: ColumnsType<DataType> = [
     {
       title: 'Title',

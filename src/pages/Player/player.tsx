@@ -9,7 +9,7 @@ interface DataType {
   tags: string[];
 }
 
-function Player() {
+const Player = () =>{
   const columns: ColumnsType<DataType> = [
     {
       title: 'Title',
