@@ -48,7 +48,7 @@ const Home =() => {
     if(type == 0){
       const columns: ColumnsType<GameAttribute> = [
         {
-          title: 'Title',
+          title: title,
           dataIndex: 'keyName',
           key: 'keyName',
           render: (text) => <a>{text}</a>,
@@ -60,18 +60,43 @@ const Home =() => {
         },];
       return columns;
     }
+    // id: any,
+    // rushAttempts: any,
+    // rushTds: any,
+    // rushYdsGained:any,
+    // rec: any,
+    // receivingYards: any
     const columns :ColumnsType<Player> = [
       {
-        title: 'Title',
-        dataIndex: 'keyName',
-        key: 'keyName',
-        render: (text) => <a>{text}</a>,
+        title: title,
+        render: (player) => player.id,
       },
       {
-        title: 'discrepancy value',
-        key: 'value',
-        dataIndex: 'value',
-      },];
+        title: 'rush Attempts',
+        key: 'rushAttempts',
+        dataIndex: 'rushAttempts',
+      },
+      {
+        title: 'rush touch downs',
+        key: 'rushTds',
+        dataIndex: 'rushTds',
+      },
+      {
+        title: 'Rush Yards Ganed',
+        key: 'rushYdsGained',
+        dataIndex: 'rushYdsGained',
+      },
+      {
+        title: 'Receptions',
+        key: 'rec',
+        dataIndex: 'rec',
+      },
+      {
+        title: 'Receiving Yards',
+        key: 'receivingYards',
+        dataIndex: 'receivingYards',
+      },
+    ];
     return columns;
   }
 
