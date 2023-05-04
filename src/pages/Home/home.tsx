@@ -42,34 +42,49 @@ const Home =() => {
   }
   
 
-  const columns: ColumnsType<GameAttribute> = [
-    {
-      title: 'Title',
-      dataIndex: 'keyName',
-      key: 'keyName',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'discrepancy value',
-      key: 'value',
-      dataIndex: 'value',
-    },
-    // {
-    //   title: 'Action',
-    //   key: 'action',
-    //   render: (_, record) => (
-    //     <Space size="middle">
-    //       <a href='#'>Detail</a>
-    //     </Space>
-    //   ),
-    // },
-  ];
+  
+    
+  const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
+    if(type == 0){
+      const columns: ColumnsType<GameAttribute> = [
+        {
+          title: 'Title',
+          dataIndex: 'keyName',
+          key: 'keyName',
+          render: (text) => <a>{text}</a>,
+        },
+        {
+          title: 'discrepancy value',
+          key: 'value',
+          dataIndex: 'value',
+        },];
+      return columns;
+    }
+    const columns :ColumnsType<Player> = [
+      {
+        title: 'Title',
+        dataIndex: 'keyName',
+        key: 'keyName',
+        render: (text) => <a>{text}</a>,
+      },
+      {
+        title: 'discrepancy value',
+        key: 'value',
+        dataIndex: 'value',
+      },];
+    return columns;
+  }
 
   return (
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> All discrepancies </p>
       <div className='px-5 my-5'>
-        <Table columns={columns} dataSource={gameData} />
+        <Table columns={generateColumns(0, 'Game')} dataSource={gameData} pagination={false}/>
+        <Table columns={generateColumns(0, 'Home Team')} dataSource={teamHomeData} pagination={false}/>
+        <Table columns={generateColumns(0, 'Away Team')} dataSource={teamAwayData} pagination={false}/>
+
+        <Table columns={generateColumns(1, 'Home Players')} dataSource={homePlayersData} pagination={false}/>
+        <Table columns={generateColumns(1, 'Away Players')} dataSource={awayPlayersData} pagination={false}/>
       </div>
     </div>
   );
