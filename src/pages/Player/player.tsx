@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Space, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import * as PlayerModel from '../../model/Player';
+import { getDiscrepanciesByPlayer } from '../../utils/api/api';
+import pairDataForPlayer from '../../utils/pair/pairDataForPlayer';
+import switchUrlForType from '../../utils/pair/switchUrlForType';
 interface DataType {
   key: string;
   title: string;
@@ -10,77 +14,65 @@ interface DataType {
 }
 
 const Player = () =>{
-  const columns: ColumnsType<DataType> = [
-    {
-      title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Discrepancies',
-      key: 'discrepancies',
-      dataIndex: 'discrepancies',
-      align: 'right'
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = 'volcano';
-            if (tag === 'resolved') {
-              color = 'green';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      width: 200,
-      render: (_, record) => (
-        <Space size="middle">
-          <Button size='small' type="primary" danger>Ignore</Button>
-          <Button size='small' type='primary'>Resolve</Button>
-        </Space>
-      ),
-    },
-  ];
+  const [homePlayersData, setHomePlayerData] = useState<PlayerModel.Player[]>([]);
+  const [awayPlayersData, setAwayPlayerData] = useState<PlayerModel.Player[]>([]);
 
-  const data: DataType[] = [
-    {
-      key: '1',
-      title: 'John Brown',
-      discrepancies: 10,
-      tags: ['resolved'],
-    },
-    {
-      key: '2',
-      title: 'Jim Green',
-      discrepancies: -2,
-      tags: ['ignored'],
-    },
-    {
-      key: '3',
-      title: 'Joe Black',
-      discrepancies: 33,
-      tags: ['resolved'],
-    },
-  ];
+  useEffect(() => {
+    console.log('mounted');
+    getDiscrepanciesByPlayer().then(result=>{
+      // console.log(result);
+      pairAll(result);
+    })
+  },[]);
+
+  const pairAll = (data:any) => {
+
+    setHomePlayerData(pairDataForPlayer(data['homePlayers'] ))
+    setAwayPlayerData(pairDataForPlayer(data['awayPlayers']))
+  }
+
+  const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
+    
+    const columns :ColumnsType<PlayerModel.Player> = [
+      {
+        title: <a href={switchUrlForType(type)}>{title}</a>,
+        render: (player) => player.id,
+      },
+      {
+        title: 'rush Attempts',
+        key: 'rushAttempts',
+        dataIndex: 'rushAttempts',
+      },
+      {
+        title: 'rush touch downs',
+        key: 'rushTds',
+        dataIndex: 'rushTds',
+      },
+      {
+        title: 'Rush Yards Ganed',
+        key: 'rushYdsGained',
+        dataIndex: 'rushYdsGained',
+      },
+      {
+        title: 'Receptions',
+        key: 'rec',
+        dataIndex: 'rec',
+      },
+      {
+        title: 'Receiving Yards',
+        key: 'receivingYards',
+        dataIndex: 'receivingYards',
+      },
+    ];
+    return columns;
+  }
+
   return (
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> Discrepancies For Player </p>
       <div className='px-5'>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={generateColumns(2, 'Home Players')} dataSource={homePlayersData} pagination={false}/>
+        <Table columns={generateColumns(2, 'Away Players')} dataSource={awayPlayersData} pagination={false}/>
       </div>
     </div>
   );
