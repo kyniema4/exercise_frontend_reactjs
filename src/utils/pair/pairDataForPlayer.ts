@@ -1,9 +1,20 @@
 import { Player } from "../../model/Player";
 
-const  pairDataForPlayer = (players:any):Player[] =>{
-    var arr:Player[] = [];
+const  pairDataForPlayer = (players:any,teamId:String , team:String):Player[] =>{
+    let arr:Player[] = [];
     players.forEach((player: Player) => {
-        arr.push(player);
+        player.teamId = teamId;
+        player.team = team;
+        arr.push({
+            id: player.id??'',
+            rushAttempts: player.rushAttempts??0,
+            rushTds: player.rushTds??0,
+            rushYdsGained: player.rushYdsGained??0,
+            rec: player.rec??0,
+            receivingYards: player.receivingYards??0,
+            teamId:player.teamId??'',
+            team: player.team
+        });
     });
     // for(var player of players){
     //     arr.push(player);

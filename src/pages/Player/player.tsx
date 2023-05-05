@@ -14,8 +14,7 @@ import switchUrlForType from '../../utils/pair/switchUrlForType';
 // }
 
 const Player = () =>{
-  const [homePlayersData, setHomePlayerData] = useState<PlayerModel.Player[]>([]);
-  const [awayPlayersData, setAwayPlayerData] = useState<PlayerModel.Player[]>([]);
+  const [playersData, setPlayersData] = useState<PlayerModel.Player[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -26,9 +25,10 @@ const Player = () =>{
   },[]);
 
   const pairAll = (data:any) => {
+    const homePlayers = pairDataForPlayer(data['homePlayers'] , data['home']['id'] , 'home');
+    const awayPlayers = pairDataForPlayer(data['awayPlayers'] , data['away']['id'] , 'away');
+    setPlayersData([...homePlayers,...awayPlayers]);
 
-    setHomePlayerData(pairDataForPlayer(data['homePlayers'] ))
-    setAwayPlayerData(pairDataForPlayer(data['awayPlayers']))
   }
 
   const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
@@ -109,8 +109,7 @@ const Player = () =>{
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> Discrepancies For Player </p>
       <div className='px-5'>
-        <Table columns={generateColumns(2, 'Home Players')} dataSource={homePlayersData} pagination={false}/>
-        <Table columns={generateColumns(2, 'Away Players')} dataSource={awayPlayersData} pagination={false}/>
+        <Table columns={generateColumns(2, 'Home Players')} dataSource={playersData} pagination={false}/>
       </div>
     </div>
   );

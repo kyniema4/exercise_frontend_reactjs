@@ -17,8 +17,7 @@ const Home =() => {
   const [teamHomeData, setTeamHomeData] = useState<GameAttribute[]>([]);
   const [teamAwayData, setTeamAwayData] = useState<GameAttribute[]>([]);
 
-  const [homePlayersData, setHomePlayerData] = useState<Player[]>([]);
-  const [awayPlayersData, setAwayPlayerData] = useState<Player[]>([]);
+  const [playersData, setPlayersData] = useState<Player[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -38,8 +37,9 @@ const Home =() => {
     const awayData = pairDataForTeam(data, 'away');
     setTeamAwayData(awayData);
 
-    setHomePlayerData(pairDataForPlayer(data['homePlayers'] ))
-    setAwayPlayerData(pairDataForPlayer(data['awayPlayers']))
+    const homePlayers = pairDataForPlayer(data['homePlayers'] , data['home']['id'] , 'home');
+    const awayPlayers = pairDataForPlayer(data['awayPlayers'] , data['away']['id'] , 'away');
+    setPlayersData([...homePlayers,...awayPlayers]);
   }
   
 
@@ -108,8 +108,7 @@ const Home =() => {
         <Table columns={generateColumns(1, 'Home Team')} dataSource={teamHomeData} pagination={false}/>
         <Table columns={generateColumns(1, 'Away Team')} dataSource={teamAwayData} pagination={false}/>
 
-        <Table columns={generateColumns(2, 'Home Players')} dataSource={homePlayersData} pagination={false}/>
-        <Table columns={generateColumns(2, 'Away Players')} dataSource={awayPlayersData} pagination={false}/>
+        <Table columns={generateColumns(2, 'Home Players')} dataSource={playersData} pagination={false}/>
       </div>
     </div>
   );
