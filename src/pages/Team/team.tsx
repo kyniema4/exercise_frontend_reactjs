@@ -40,7 +40,7 @@ const Team = () => {
   }
 
   const resolveItem = (item:TeamModel.Team,title='') =>{
-    // resolveObject('home', item.keyName);
+    resolveObject('team', item.id);
     setTeamData(prevState => {
       const newState = prevState.map(obj => {
         // 👇️ if id equals 2, update the country property
@@ -57,7 +57,7 @@ const Team = () => {
   }
 
   const rejectItem = (item:TeamModel.Team) =>{
-    // rejectObject('away', item.id)
+    rejectObject('team', item.id)
     setTeamData(current =>
       current.filter(obj => {
         return !(obj.id === item.id && obj.name == item.name)

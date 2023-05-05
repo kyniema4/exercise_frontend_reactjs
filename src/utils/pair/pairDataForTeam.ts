@@ -1,6 +1,6 @@
 import { GameAttribute } from "../../model/GameAttribute";
 import { Team } from "../../model/Team";
-import { getFieldValue } from "./actionForField";
+import { getFieldValue, getSubFieldValue } from "./actionForField";
 
 
 const pairDataForTeam = (data:any ): Team[] =>{
@@ -8,18 +8,23 @@ const pairDataForTeam = (data:any ): Team[] =>{
     let teams:Team[] = [];
     keys.forEach(key=>{
         if(!!data[key]){
-            let team = {
-                id: data[key]['id'],
-                name:key,
-                rushAttempts: data[key]['rushAttempts']?? 0,
-                rushTds: data[key]['rushTds']??0,
-                rushYdsGained: data[key]['rushYdsGained']??0,
-                rec: data[key]['rec']??0,
-                receivingYards: data[key]['receivingYards']??0,
-                isReject:0,
+            console.log(key, getSubFieldValue('team',data[key]['id'] ), getFieldValue('team'))
+            let isReject = getSubFieldValue('team',data[key]['id'] )??0
+            if(isReject>=0){
+                let team = {
+                    id: data[key]['id'],
+                    name:key,
+                    rushAttempts: data[key]['rushAttempts']?? 0,
+                    rushTds: data[key]['rushTds']??0,
+                    rushYdsGained: data[key]['rushYdsGained']??0,
+                    rec: data[key]['rec']??0,
+                    receivingYards: data[key]['receivingYards']??0,
+                    isReject:isReject,
+                }
+    
+                teams.push(team);
             }
-
-            teams.push(team);
+            
         }
     })
     return teams;

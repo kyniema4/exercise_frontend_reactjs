@@ -6,7 +6,7 @@ import * as PlayerModel from '../../model/Player';
 import { getDiscrepanciesByPlayer } from '../../utils/api/api';
 import pairDataForPlayer from '../../utils/pair/pairDataForPlayer';
 import switchUrlForType from '../../utils/pair/switchUrlForType';
-import { rejectObject } from '../../utils/pair/actionForField';
+import { rejectObject, resolveObject } from '../../utils/pair/actionForField';
 // interface DataType {
 //   key: string;
 //   title: string;
@@ -33,7 +33,7 @@ const Player = () =>{
   }
 
   const resolveItem = (item:PlayerModel.Player) =>{
-    // resolveObject('home', item.keyName);
+    resolveObject(item.team+ 'players', item.id);
     setPlayersData(prevState => {
       const newState = prevState.map(obj => {
         // 👇️ if id equals 2, update the country property
@@ -50,7 +50,7 @@ const Player = () =>{
   }
 
   const rejectItem = (item:PlayerModel.Player) =>{
-    // rejectObject('away', item.id)
+    rejectObject(item.team+ 'players', item.id)
     setPlayersData(current =>
       current.filter(obj => {
         return !(obj.id === item.id && obj.team == item.team)

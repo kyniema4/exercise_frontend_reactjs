@@ -35,7 +35,7 @@ const Game = () =>{
   }
 
   const resolveItem = (item:GameModel.Game,title='') =>{
-    // resolveObject('game', item.keyName)
+    resolveObject('game', item.id)
     setGameData(prevState => {
       const newState = prevState.map(obj => {
         // 👇️ if id equals 2, update the country property
@@ -52,7 +52,7 @@ const Game = () =>{
   }
 
   const rejectItem = (item:GameModel.Game,title ='') =>{
-    // rejectObject('game', item.keyName)
+    rejectObject('game', item.id)
     setGameData(current =>
       current.filter(obj => {
         return !(obj.id === item.id)

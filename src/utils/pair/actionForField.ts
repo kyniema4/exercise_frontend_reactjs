@@ -8,6 +8,12 @@ export const getFieldValue = (fieldName='key') =>{
     return oldData[fieldName]??{};
 }
 
+export const getSubFieldValue = (fieldName='key', subField ='2ndKey') =>{
+    let fieldData = getFieldValue(fieldName);
+    let subFieldValue = fieldData[subField];
+    return subFieldValue;
+}
+
 export  const saveData = (key='key', value='') =>{
     const oldData = getData();
     oldData[key] = value;
