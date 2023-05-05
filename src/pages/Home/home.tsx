@@ -134,11 +134,11 @@ const Home =() => {
         title: <a href={switchUrlForType(type)}>{title}</a>,
         render: (player) => player.id,
       },
-      {
-        title: 'Team Id',
-        key: 'teamId',
-        dataIndex: 'teamId',
-      },
+      // {
+      //   title: 'Team Id',
+      //   key: 'teamId',
+      //   dataIndex: 'teamId',
+      // },
       {
         title: 'team',
         key: 'team',
