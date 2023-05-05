@@ -91,7 +91,7 @@ const Home =() => {
           dataIndex: 'id',
         },
         {
-          title: 'team',
+          title: 'Team',
           key: 'team',
           dataIndex: 'name',
         },
@@ -140,7 +140,7 @@ const Home =() => {
       //   dataIndex: 'teamId',
       // },
       {
-        title: 'team',
+        title: 'Team',
         key: 'team',
         dataIndex: 'team',
       },

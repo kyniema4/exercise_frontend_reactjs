@@ -73,7 +73,7 @@ const Player = () =>{
       //   dataIndex: 'teamId',
       // },
       {
-        title: 'team',
+        title: 'Team',
         key: 'team',
         dataIndex: 'team',
       },
@@ -148,7 +148,7 @@ const Player = () =>{
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> Discrepancies For Player </p>
       <div className='px-5'>
-        <Table columns={generateColumns(2, 'Players')} dataSource={playersData} pagination={false}/>
+        <Table columns={generateColumns(2, 'Player Id')} dataSource={playersData} pagination={false}/>
       </div>
     </div>
   );

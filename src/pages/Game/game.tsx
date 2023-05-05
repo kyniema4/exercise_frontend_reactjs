@@ -89,15 +89,15 @@ const Game = () =>{
         title: 'Status',
         render: (item) =>{
           let color = 'volcano';
-              // if (tag === 'resolved') {
-              //   color = 'green';
-              // }
-          if(item.keyName === 'id'||!item.isReject){
+          if (item.isReject === 1) {
+            color = 'green';
+          }
+          if(!item.isReject){
             return ''
           }
           return (
             <Tag color={color} key={item.isReject??'noaction'}>
-              Reject
+              Resolved
             </Tag>
           );
         }
@@ -130,7 +130,7 @@ const Game = () =>{
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> Discrepancies For Game </p>
       <div className='px-5'>
-        <Table columns={generateColumns(0, 'Game')} dataSource={gameData} />
+        <Table columns={generateColumns(0, 'Game Id')} dataSource={gameData} />
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ const Team = () => {
         dataIndex: 'id',
       },
       {
-        title: 'team',
+        title: 'Team',
         key: 'team',
         dataIndex: 'name',
       },
@@ -115,12 +115,12 @@ const Team = () => {
             return ''
           }
           let color = 'volcano';
-          if (item.isReject === 'resolved') {
+          if (item.isReject === 1) {
             color = 'green';
           }
           return (
             <Tag color={color} key={item.isReject??'noaction'}>
-              Reject
+              Resolved
             </Tag>
           );
         }
