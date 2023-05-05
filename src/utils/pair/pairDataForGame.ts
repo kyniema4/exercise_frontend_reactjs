@@ -10,7 +10,8 @@ export default  (data:any):GameAttribute[] =>{
         for(var key in game){
             arr.push({
                 keyName: key,
-                value: game[key]
+                value: game[key],
+                isReject:null,
             })
         }
     }

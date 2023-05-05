@@ -1,4 +1,5 @@
 export interface GameAttribute {
     keyName: any,
-    value: any
+    value: any,
+    isReject:any,
 }

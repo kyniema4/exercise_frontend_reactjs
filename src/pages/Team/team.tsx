@@ -47,7 +47,36 @@ const Team = () => {
         title: 'discrepancy value',
         key: 'value',
         dataIndex: 'value',
-      },];
+      },
+      {
+        title: 'Tags',
+        render: (item) =>{
+          let color = 'volcano';
+              // if (tag === 'resolved') {
+              //   color = 'green';
+              // }
+          if(item.keyName == 'id'||!item.isReject){
+            return ''
+          }
+          return (
+            <Tag color={color} key={item.isReject??'noaction'}>
+              Reject
+            </Tag>
+          );
+        }
+      },
+      {
+        title: 'Action',
+        key: 'action',
+        width: 200,
+        render: (_, record) => (
+          <Space size="middle">
+            <Button size='small' type="primary" danger>Ignore</Button>
+            <Button size='small' type='primary'>Resolve</Button>
+          </Space>
+        ),
+      },
+    ];
     return columns;
   }
 
