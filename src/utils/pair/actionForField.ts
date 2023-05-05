@@ -16,12 +16,14 @@ export  const saveData = (key='key', value='') =>{
 
 export const resolveObject = (key ='key' , fieldName ='fieldName') =>{
     const oldData = getData();
+    if(!oldData[key]) oldData[key] = {}
     oldData[key][fieldName] = -1;
     return localStorage.setItem(KEY_FOR_LOCAL_STORAGE, JSON.stringify(oldData));
 }
 
 export const rejectObject = (key ='key' , fieldName ='fieldName') =>{
     const oldData = getData();
+    if(!oldData[key]) oldData[key] = {}
     oldData[key][fieldName] = -1;
     return localStorage.setItem(KEY_FOR_LOCAL_STORAGE, JSON.stringify(oldData));
 }

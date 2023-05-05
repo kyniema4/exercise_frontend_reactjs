@@ -6,6 +6,7 @@ import { getDiscrepanciesByTeam } from '../../utils/api/api';
 import pairDataForTeam from '../../utils/pair/pairDataForTeam';
 import { GameAttribute } from '../../model/GameAttribute';
 import switchUrlForType from '../../utils/pair/switchUrlForType';
+import { rejectObject, resolveObject } from '../../utils/pair/actionForField';
 interface DataType {
   key: string;
   title: string;
@@ -37,6 +38,7 @@ const Team = () => {
 
   const resolveItem = (item:GameAttribute,title='') =>{
     if(title ==='Home Team'){
+      resolveObject('home', item.keyName);
       setTeamHomeData(current =>
         current.filter(obj => {
           return !(obj.keyName === item.keyName && obj.value == item.value)
@@ -44,6 +46,7 @@ const Team = () => {
       );
     }
     if(title === 'Away Team'){
+      resolveObject('away', item.keyName);
       setTeamAwayData(current =>
         current.filter(obj => {
           return !(obj.keyName === item.keyName && obj.value == item.value)
@@ -54,6 +57,7 @@ const Team = () => {
 
   const rejectItem = (item:GameAttribute,title ='') =>{
     if(title ==='Home Team'){
+      rejectObject('home', item.keyName)
       setTeamHomeData(prevState => {
         const newState = prevState.map(obj => {
           // 👇️ if id equals 2, update the country property
@@ -69,6 +73,7 @@ const Team = () => {
       });
     }
     if(title === 'Away Team'){
+      rejectObject('away', item.keyName)
       setTeamAwayData(prevState => {
         const newState = prevState.map(obj => {
           // 👇️ if id equals 2, update the country property
