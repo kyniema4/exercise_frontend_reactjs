@@ -35,6 +35,57 @@ const Team = () => {
     setTeamAwayData(awayData);
   }
 
+  const resolveItem = (item:GameAttribute,title='') =>{
+    if(title ==='Home Team'){
+      setTeamHomeData(current =>
+        current.filter(obj => {
+          return !(obj.keyName === item.keyName && obj.value == item.value)
+        }),
+      );
+    }
+    if(title === 'Away Team'){
+      setTeamAwayData(current =>
+        current.filter(obj => {
+          return !(obj.keyName === item.keyName && obj.value == item.value)
+        }),
+      );
+    }
+  }
+
+  const rejectItem = (item:GameAttribute,title ='') =>{
+    if(title ==='Home Team'){
+      setTeamHomeData(prevState => {
+        const newState = prevState.map(obj => {
+          // 👇️ if id equals 2, update the country property
+          if (obj.keyName === item.keyName && obj.value == item.value) {
+            return {...obj, isReject: true};
+          }
+    
+          // 👇️ otherwise return the object as is
+          return obj;
+        });
+    
+        return newState;
+      });
+    }
+    if(title === 'Away Team'){
+      setTeamAwayData(prevState => {
+        const newState = prevState.map(obj => {
+          // 👇️ if id equals 2, update the country property
+          if (obj.keyName === item.keyName && obj.value == item.value) {
+            return {...obj, isReject: true};
+          }
+    
+          // 👇️ otherwise return the object as is
+          return obj;
+        });
+    
+        return newState;
+      });
+    }
+    
+  }
+
   const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
     const columns: ColumnsType<GameAttribute> = [
       {
@@ -69,12 +120,22 @@ const Team = () => {
         title: 'Action',
         key: 'action',
         width: 200,
-        render: (_, record) => (
+        render: (item) => {
+          if(item.keyName=='id') return''
+          return (
           <Space size="middle">
-            <Button size='small' type="primary" danger>Ignore</Button>
-            <Button size='small' type='primary'>Resolve</Button>
+            <Button size='small' type="primary" danger
+              onClick={()=>{
+                rejectItem(item,title);
+              }}
+            >Ignore</Button>
+            <Button size='small' type='primary'
+              onClick={()=>{
+                resolveItem(item,title);
+              }}
+            >Resolve</Button>
           </Space>
-        ),
+        )},
       },
     ];
     return columns;

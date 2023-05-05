@@ -6,7 +6,7 @@ export default  (data:any):GameAttribute[] =>{
     var arr:GameAttribute[] = []
     if(!!data['game']){
         const {game}= data;
-        console.log('game',game)
+        
         for(var key in game){
             arr.push({
                 keyName: key,
