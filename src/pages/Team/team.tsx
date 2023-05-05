@@ -39,58 +39,30 @@ const Team = () => {
     setTeamData(teams);
   }
 
-  const resolveItem = (item:GameAttribute,title='') =>{
-    // if(title ==='Home Team'){
-    //   resolveObject('home', item.keyName);
-    //   setTeamHomeData(current =>
-    //     current.filter(obj => {
-    //       return !(obj.keyName === item.keyName && obj.value == item.value)
-    //     }),
-    //   );
-    // }
-    // if(title === 'Away Team'){
-    //   resolveObject('away', item.keyName);
-    //   setTeamAwayData(current =>
-    //     current.filter(obj => {
-    //       return !(obj.keyName === item.keyName && obj.value == item.value)
-    //     }),
-    //   );
-    // }
+  const resolveItem = (item:TeamModel.Team,title='') =>{
+    // resolveObject('home', item.keyName);
+    setTeamData(prevState => {
+      const newState = prevState.map(obj => {
+        // 👇️ if id equals 2, update the country property
+        if (obj.id === item.id && obj.name == item.name) {
+          return {...obj, isReject: 1};
+        }
+  
+        // 👇️ otherwise return the object as is
+        return obj;
+      });
+  
+      return newState;
+    });
   }
 
-  const rejectItem = (item:GameAttribute,title ='') =>{
-    // if(title ==='Home Team'){
-    //   rejectObject('home', item.keyName)
-    //   setTeamHomeData(prevState => {
-    //     const newState = prevState.map(obj => {
-    //       // 👇️ if id equals 2, update the country property
-    //       if (obj.keyName === item.keyName && obj.value == item.value) {
-    //         return {...obj, isReject: true};
-    //       }
-    
-    //       // 👇️ otherwise return the object as is
-    //       return obj;
-    //     });
-    
-    //     return newState;
-    //   });
-    // }
-    // if(title === 'Away Team'){
-    //   rejectObject('away', item.keyName)
-    //   setTeamAwayData(prevState => {
-    //     const newState = prevState.map(obj => {
-    //       // 👇️ if id equals 2, update the country property
-    //       if (obj.keyName === item.keyName && obj.value == item.value) {
-    //         return {...obj, isReject: true};
-    //       }
-    
-    //       // 👇️ otherwise return the object as is
-    //       return obj;
-    //     });
-    
-    //     return newState;
-    //   });
-    // }
+  const rejectItem = (item:TeamModel.Team) =>{
+    // rejectObject('away', item.id)
+    setTeamData(current =>
+      current.filter(obj => {
+        return !(obj.id === item.id && obj.name == item.name)
+      }),
+    );
     
   }
 
@@ -163,12 +135,12 @@ const Team = () => {
           <Space size="middle">
             <Button size='small' type="primary" danger
               onClick={()=>{
-                rejectItem(item,title);
+                rejectItem(item);
               }}
             >Ignore</Button>
             <Button size='small' type='primary'
               onClick={()=>{
-                resolveItem(item,title);
+                resolveItem(item);
               }}
             >Resolve</Button>
           </Space>

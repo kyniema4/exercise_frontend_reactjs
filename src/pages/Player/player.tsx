@@ -34,20 +34,11 @@ const Player = () =>{
 
   const resolveItem = (item:PlayerModel.Player) =>{
     // resolveObject('home', item.keyName);
-    setPlayersData(current =>
-      current.filter(obj => {
-        return !(obj.id === item.id && obj.team == item.team)
-      }),
-    );
-  }
-
-  const rejectItem = (item:PlayerModel.Player) =>{
-    rejectObject('away', item.id)
     setPlayersData(prevState => {
       const newState = prevState.map(obj => {
         // 👇️ if id equals 2, update the country property
         if (obj.id === item.id && obj.team == item.team) {
-          return {...obj, isReject: true};
+          return {...obj, isReject: 1};
         }
   
         // 👇️ otherwise return the object as is
@@ -56,6 +47,16 @@ const Player = () =>{
   
       return newState;
     });
+  }
+
+  const rejectItem = (item:PlayerModel.Player) =>{
+    // rejectObject('away', item.id)
+    setPlayersData(current =>
+      current.filter(obj => {
+        return !(obj.id === item.id && obj.team == item.team)
+      }),
+    );
+    
     
   }
 
