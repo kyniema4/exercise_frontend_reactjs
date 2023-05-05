@@ -82,7 +82,7 @@ const Game = () =>{
       //   dataIndex: 'away',
       // },
       {
-        title: 'attendance',
+        title: 'Attendance',
         key: 'attendance',
         dataIndex: 'attendance',
         width: '30%',

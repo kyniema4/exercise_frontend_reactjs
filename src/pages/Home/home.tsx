@@ -72,7 +72,7 @@ const Home =() => {
         //   dataIndex: 'away',
         // },
         {
-          title: 'attendance',
+          title: 'Attendance',
           key: 'attendance',
           dataIndex: 'attendance',
           width: '30%',
@@ -136,16 +136,6 @@ const Home =() => {
         title: <a href={switchUrlForType(type)}>{title}</a>,
         render: (player) => player.id,
       },
-      // {
-      //   title: 'Team Id',
-      //   key: 'teamId',
-      //   dataIndex: 'teamId',
-      // },
-      {
-        title: 'Team',
-        key: 'team',
-        dataIndex: 'team',
-      },
       {
         title: 'Rush Attempts',
         key: 'rushAttempts',
@@ -179,9 +169,9 @@ const Home =() => {
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> All Discrepancies </p>
       <div className='px-5 my-5'>
-        <Table columns={generateColumns(0, 'Game')} dataSource={gameData} pagination={false} title={() => 'Game Discrepancies'} />
+        <Table columns={generateColumns(0, 'Game Id')} dataSource={gameData} pagination={false} title={() => 'Game Discrepancies'} />
 
-        <Table columns={generateColumns(1, 'Teams')} dataSource={teamData} pagination={false} title={() => 'Teams Discrepancies'} />
+        <Table columns={generateColumns(1, 'Team Id')} dataSource={teamData} pagination={false} title={() => 'Teams Discrepancies'} />
 
         <Table columns={generateColumns(2, 'Player Id')} dataSource={playersData} pagination={false}title={() => 'Player Discrepancies'} />
       </div>
