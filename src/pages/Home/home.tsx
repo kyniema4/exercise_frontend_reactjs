@@ -10,10 +10,11 @@ import { Player } from '../../model/Player';
 import pairDataForPlayer from '../../utils/pair/pairDataForPlayer';
 import switchUrlForType from '../../utils/pair/switchUrlForType';
 import * as TeamModel from '../../model/Team';
+import * as GameModel from '../../model/Game';
 
 const Home =() => {
 
-  const [gameData, setGameData] = useState<GameAttribute[]>([]);
+  const [gameData, setGameData] = useState<GameModel.Game[]>([]);
 
   const [teamData, setTeamData] = useState<TeamModel.Team[]>([]);
 

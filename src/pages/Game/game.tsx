@@ -7,6 +7,7 @@ import pairDataForGame from '../../utils/pair/pairDataForGame';
 import { GameAttribute } from '../../model/GameAttribute';
 import switchUrlForType from '../../utils/pair/switchUrlForType';
 import { rejectObject, resolveObject } from '../../utils/pair/actionForField';
+import * as GameModel from '../../model/Game';
 // interface DataType {
 //   key: string;
 //   team: string;
@@ -18,7 +19,7 @@ import { rejectObject, resolveObject } from '../../utils/pair/actionForField';
 
 const Game = () =>{
 
-  const [gameData, setGameData] = useState<GameAttribute[]>([]);
+  const [gameData, setGameData] = useState<GameModel.Game[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -34,29 +35,29 @@ const Game = () =>{
   }
 
   const resolveItem = (item:GameAttribute,title='') =>{
-    resolveObject('game', item.keyName)
-    setGameData(current =>
-      current.filter(obj => {
-        return !(obj.keyName === item.keyName && obj.value === item.value)
-      }),
-    );
+    // resolveObject('game', item.keyName)
+    // setGameData(current =>
+    //   current.filter(obj => {
+    //     return !(obj.keyName === item.keyName && obj.value === item.value)
+    //   }),
+    // );
   }
 
   const rejectItem = (item:GameAttribute,title ='') =>{
-    rejectObject('game', item.keyName)
-    setGameData(prevState => {
-      const newState = prevState.map(obj => {
-        // 👇️ if id equals 2, update the country property
-        if (obj.keyName === item.keyName && obj.value === item.value) {
-          return {...obj, isReject: true};
-        }
+    // rejectObject('game', item.keyName)
+    // setGameData(prevState => {
+    //   const newState = prevState.map(obj => {
+    //     // 👇️ if id equals 2, update the country property
+    //     if (obj.keyName === item.keyName && obj.value === item.value) {
+    //       return {...obj, isReject: true};
+    //     }
   
-        // 👇️ otherwise return the object as is
-        return obj;
-      });
+    //     // 👇️ otherwise return the object as is
+    //     return obj;
+    //   });
   
-      return newState;
-    });
+    //   return newState;
+    // });
     
   }
 
