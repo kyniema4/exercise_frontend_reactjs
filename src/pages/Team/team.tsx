@@ -35,6 +35,8 @@ const Team = () => {
 
     // const awayData = pairDataForTeam(data, 'away');
     // setTeamAwayData(awayData);
+    const teams = pairDataForTeam(data);
+    setTeamData(teams);
   }
 
   const resolveItem = (item:GameAttribute,title='') =>{
@@ -96,24 +98,53 @@ const Team = () => {
     const columns: ColumnsType<GameAttribute> = [
       {
         title: <a href={switchUrlForType(type)}>{title}</a>,
-        dataIndex: 'keyName',
-        key: 'keyName',
-        render: (text) => <a>{text}</a>,
+        render: (player) => player.id,
       },
       {
-        title: 'discrepancy value',
-        key: 'value',
-        dataIndex: 'value',
+        title: 'teamId',
+        key: 'teamId',
+        dataIndex: 'id',
       },
       {
-        title: 'Tags',
+        title: 'team',
+        key: 'team',
+        dataIndex: 'name',
+      },
+      {
+        title: 'rush Attempts',
+        key: 'rushAttempts',
+        dataIndex: 'rushAttempts',
+      },
+      {
+        title: 'rush touch downs',
+        key: 'rushTds',
+        dataIndex: 'rushTds',
+      },
+      {
+        title: 'Rush Yards Ganed',
+        key: 'rushYdsGained',
+        dataIndex: 'rushYdsGained',
+      },
+      {
+        title: 'Receptions',
+        key: 'rec',
+        dataIndex: 'rec',
+      },
+      {
+        title: 'Receiving Yards',
+        key: 'receivingYards',
+        dataIndex: 'receivingYards',
+      },
+      {
+        title: 'Status',
         render: (item) =>{
-          let color = 'volcano';
-              // if (tag === 'resolved') {
-              //   color = 'green';
-              // }
-          if(item.keyName == 'id'||!item.isReject){
+          
+          if(!item.isReject){
             return ''
+          }
+          let color = 'volcano';
+          if (item.isReject === 'resolved') {
+            color = 'green';
           }
           return (
             <Tag color={color} key={item.isReject??'noaction'}>

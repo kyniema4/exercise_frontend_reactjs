@@ -34,7 +34,7 @@ const Game = () =>{
     setGameData(game);
   }
 
-  const resolveItem = (item:GameAttribute,title='') =>{
+  const resolveItem = (item:GameModel.Game,title='') =>{
     // resolveObject('game', item.keyName)
     // setGameData(current =>
     //   current.filter(obj => {
@@ -43,7 +43,7 @@ const Game = () =>{
     // );
   }
 
-  const rejectItem = (item:GameAttribute,title ='') =>{
+  const rejectItem = (item:GameModel.Game,title ='') =>{
     // rejectObject('game', item.keyName)
     // setGameData(prevState => {
     //   const newState = prevState.map(obj => {
@@ -67,17 +67,26 @@ const Game = () =>{
     const columns: ColumnsType<GameAttribute> = [
       {
         title: <a href={switchUrlForType(type)}>{title}</a>,
-        dataIndex: 'keyName',
-        key: 'keyName',
-        render: (text) => <a href='#'>{text}</a>,
+        dataIndex: 'id',
+        key: 'id',
       },
       {
-        title: 'discrepancy value',
-        key: 'value',
-        dataIndex: 'value',
+        title: 'home',
+        key: 'home',
+        dataIndex: 'home',
       },
       {
-        title: 'Tags',
+        title: 'away',
+        key: 'away',
+        dataIndex: 'away',
+      },
+      {
+        title: 'attendance',
+        key: 'attendance',
+        dataIndex: 'attendance',
+      },
+      {
+        title: 'Status',
         render: (item) =>{
           let color = 'volcano';
               // if (tag === 'resolved') {

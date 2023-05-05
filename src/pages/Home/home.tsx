@@ -54,18 +54,28 @@ const Home =() => {
     
   const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
     if(type === 0){
-      const columns: ColumnsType<GameAttribute> = [
+      const columns: ColumnsType<GameModel.Game> = [
         {
           title: <a href={switchUrlForType(type)}>{title}</a>,
-          dataIndex: 'keyName',
-          key: 'keyName',
-          render: (text) => <a href='#'>{text}</a>,
+          dataIndex: 'id',
+          key: 'id',
         },
         {
-          title: 'discrepancy value',
-          key: 'value',
-          dataIndex: 'value',
-        },];
+          title: 'home',
+          key: 'home',
+          dataIndex: 'home',
+        },
+        {
+          title: 'away',
+          key: 'away',
+          dataIndex: 'away',
+        },
+        {
+          title: 'attendance',
+          key: 'attendance',
+          dataIndex: 'attendance',
+        },
+      ];
       return columns;
     }
 

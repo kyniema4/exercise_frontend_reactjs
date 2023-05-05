@@ -1,4 +1,4 @@
-const pairDataForPlayer = (type = 0) =>{
+const switchUrlForType = (type = 0) =>{
     switch(type){
       case 0: return '/game';
       case 1: return 'team';
@@ -6,4 +6,4 @@ const pairDataForPlayer = (type = 0) =>{
     }
     return '/';
 }
-export default pairDataForPlayer
+export default switchUrlForType

@@ -105,15 +105,15 @@ const Player = () =>{
         title: 'Status',
         render: (item) =>{
           let color = 'volcano';
-              // if (tag === 'resolved') {
-              //   color = 'green';
-              // }
-          if(item.keyName === 'id'||!item.isReject){
+          if (item.isReject === 1) {
+            color = 'green';
+          }
+          if(!item.isReject){
             return ''
           }
           return (
             <Tag color={color} key={item.isReject??'noaction'}>
-              Reject
+              Resolved
             </Tag>
           );
         }
