@@ -6,6 +6,7 @@ import * as PlayerModel from '../../model/Player';
 import { getDiscrepanciesByPlayer } from '../../utils/api/api';
 import pairDataForPlayer from '../../utils/pair/pairDataForPlayer';
 import switchUrlForType from '../../utils/pair/switchUrlForType';
+import { rejectObject } from '../../utils/pair/actionForField';
 // interface DataType {
 //   key: string;
 //   title: string;
@@ -31,12 +32,49 @@ const Player = () =>{
 
   }
 
+  const resolveItem = (item:PlayerModel.Player) =>{
+    // resolveObject('home', item.keyName);
+    setPlayersData(current =>
+      current.filter(obj => {
+        return !(obj.id === item.id && obj.team == item.team)
+      }),
+    );
+  }
+
+  const rejectItem = (item:PlayerModel.Player) =>{
+    rejectObject('away', item.id)
+    setPlayersData(prevState => {
+      const newState = prevState.map(obj => {
+        // 👇️ if id equals 2, update the country property
+        if (obj.id === item.id && obj.team == item.team) {
+          return {...obj, isReject: true};
+        }
+  
+        // 👇️ otherwise return the object as is
+        return obj;
+      });
+  
+      return newState;
+    });
+    
+  }
+
   const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
     
     const columns :ColumnsType<PlayerModel.Player> = [
       {
         title: <a href={switchUrlForType(type)}>{title}</a>,
         render: (player) => player.id,
+      },
+      {
+        title: 'teamId',
+        key: 'teamId',
+        dataIndex: 'teamId',
+      },
+      {
+        title: 'team',
+        key: 'team',
+        dataIndex: 'team',
       },
       {
         title: 'rush Attempts',
@@ -90,12 +128,12 @@ const Player = () =>{
           <Space size="middle">
             <Button size='small' type="primary" danger
               onClick={()=>{
-                // rejectItem(item,title);
+                rejectItem(item);
               }}
             >Ignore</Button>
             <Button size='small' type='primary'
               onClick={()=>{
-                // resolveItem(item,title);
+                resolveItem(item);
               }}
             >Resolve</Button>
           </Space>

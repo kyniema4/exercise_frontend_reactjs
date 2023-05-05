@@ -6,5 +6,6 @@ export interface Player {
     rec: any,
     receivingYards: any,
     teamId:any,
-    team:any
+    team:any,
+    isReject:any
 }

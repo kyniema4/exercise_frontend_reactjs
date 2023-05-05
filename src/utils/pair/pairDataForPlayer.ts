@@ -13,7 +13,8 @@ const  pairDataForPlayer = (players:any,teamId:String , team:String):Player[] =>
             rec: player.rec??0,
             receivingYards: player.receivingYards??0,
             teamId:player.teamId??'',
-            team: player.team
+            team: player.team,
+            isReject:0
         });
     });
     // for(var player of players){
