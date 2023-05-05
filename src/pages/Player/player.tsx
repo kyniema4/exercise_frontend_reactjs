@@ -102,7 +102,7 @@ const Player = () =>{
         dataIndex: 'receivingYards',
       },
       {
-        title: 'Tags',
+        title: 'Status',
         render: (item) =>{
           let color = 'volcano';
               // if (tag === 'resolved') {
@@ -147,7 +147,7 @@ const Player = () =>{
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> Discrepancies For Player </p>
       <div className='px-5'>
-        <Table columns={generateColumns(2, 'Home Players')} dataSource={playersData} pagination={false}/>
+        <Table columns={generateColumns(2, 'Players')} dataSource={playersData} pagination={false}/>
       </div>
     </div>
   );

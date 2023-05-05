@@ -7,6 +7,8 @@ import pairDataForTeam from '../../utils/pair/pairDataForTeam';
 import { GameAttribute } from '../../model/GameAttribute';
 import switchUrlForType from '../../utils/pair/switchUrlForType';
 import { rejectObject, resolveObject } from '../../utils/pair/actionForField';
+import * as TeamModel from '../../model/Team';
+
 interface DataType {
   key: string;
   title: string;
@@ -16,8 +18,7 @@ interface DataType {
 
 const Team = () => {
 
-  const [teamHomeData, setTeamHomeData] = useState<GameAttribute[]>([]);
-  const [teamAwayData, setTeamAwayData] = useState<GameAttribute[]>([]);
+  const [teamData, setTeamData] = useState<TeamModel.Team[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -29,65 +30,65 @@ const Team = () => {
 
   const pairAll = (data:any) => {
 
-    const homeData = pairDataForTeam(data, 'home');
-    setTeamHomeData (homeData);
+    // const homeData = pairDataForTeam(data, 'home');
+    // setTeamHomeData (homeData);
 
-    const awayData = pairDataForTeam(data, 'away');
-    setTeamAwayData(awayData);
+    // const awayData = pairDataForTeam(data, 'away');
+    // setTeamAwayData(awayData);
   }
 
   const resolveItem = (item:GameAttribute,title='') =>{
-    if(title ==='Home Team'){
-      resolveObject('home', item.keyName);
-      setTeamHomeData(current =>
-        current.filter(obj => {
-          return !(obj.keyName === item.keyName && obj.value == item.value)
-        }),
-      );
-    }
-    if(title === 'Away Team'){
-      resolveObject('away', item.keyName);
-      setTeamAwayData(current =>
-        current.filter(obj => {
-          return !(obj.keyName === item.keyName && obj.value == item.value)
-        }),
-      );
-    }
+    // if(title ==='Home Team'){
+    //   resolveObject('home', item.keyName);
+    //   setTeamHomeData(current =>
+    //     current.filter(obj => {
+    //       return !(obj.keyName === item.keyName && obj.value == item.value)
+    //     }),
+    //   );
+    // }
+    // if(title === 'Away Team'){
+    //   resolveObject('away', item.keyName);
+    //   setTeamAwayData(current =>
+    //     current.filter(obj => {
+    //       return !(obj.keyName === item.keyName && obj.value == item.value)
+    //     }),
+    //   );
+    // }
   }
 
   const rejectItem = (item:GameAttribute,title ='') =>{
-    if(title ==='Home Team'){
-      rejectObject('home', item.keyName)
-      setTeamHomeData(prevState => {
-        const newState = prevState.map(obj => {
-          // 👇️ if id equals 2, update the country property
-          if (obj.keyName === item.keyName && obj.value == item.value) {
-            return {...obj, isReject: true};
-          }
+    // if(title ==='Home Team'){
+    //   rejectObject('home', item.keyName)
+    //   setTeamHomeData(prevState => {
+    //     const newState = prevState.map(obj => {
+    //       // 👇️ if id equals 2, update the country property
+    //       if (obj.keyName === item.keyName && obj.value == item.value) {
+    //         return {...obj, isReject: true};
+    //       }
     
-          // 👇️ otherwise return the object as is
-          return obj;
-        });
+    //       // 👇️ otherwise return the object as is
+    //       return obj;
+    //     });
     
-        return newState;
-      });
-    }
-    if(title === 'Away Team'){
-      rejectObject('away', item.keyName)
-      setTeamAwayData(prevState => {
-        const newState = prevState.map(obj => {
-          // 👇️ if id equals 2, update the country property
-          if (obj.keyName === item.keyName && obj.value == item.value) {
-            return {...obj, isReject: true};
-          }
+    //     return newState;
+    //   });
+    // }
+    // if(title === 'Away Team'){
+    //   rejectObject('away', item.keyName)
+    //   setTeamAwayData(prevState => {
+    //     const newState = prevState.map(obj => {
+    //       // 👇️ if id equals 2, update the country property
+    //       if (obj.keyName === item.keyName && obj.value == item.value) {
+    //         return {...obj, isReject: true};
+    //       }
     
-          // 👇️ otherwise return the object as is
-          return obj;
-        });
+    //       // 👇️ otherwise return the object as is
+    //       return obj;
+    //     });
     
-        return newState;
-      });
-    }
+    //     return newState;
+    //   });
+    // }
     
   }
 
@@ -151,8 +152,7 @@ const Team = () => {
     <div className="App">
       <p className='text-2xl font-bold text-center my-6'> Discrepancies For Team </p>
       <div className='px-5'>
-        <Table columns={generateColumns(1, 'Home Team')} dataSource={teamHomeData} pagination={false}/>
-        <Table columns={generateColumns(1, 'Away Team')} dataSource={teamAwayData} pagination={false}/>
+        <Table columns={generateColumns(1, 'Team')} dataSource={teamData} pagination={false}/>
       </div>
     </div>
   );
