@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Button, Space, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { getDiscrepanciesByGame } from '../../utils/api/api';
@@ -7,20 +7,18 @@ import pairDataForGame from '../../utils/pair/pairDataForGame';
 import { GameAttribute } from '../../model/GameAttribute';
 import switchUrlForType from '../../utils/pair/switchUrlForType';
 import { rejectObject, resolveObject } from '../../utils/pair/actionForField';
-interface DataType {
-  key: string;
-  team: string;
-  awayTeam: string;
-  attendance: number;
-  discrepancies: number;
-  tags: string[];
-}
+// interface DataType {
+//   key: string;
+//   team: string;
+//   awayTeam: string;
+//   attendance: number;
+//   discrepancies: number;
+//   tags: string[];
+// }
 
 const Game = () =>{
 
   const [gameData, setGameData] = useState<GameAttribute[]>([]);
-  const [teamHomeData, setTeamHomeData] = useState<GameAttribute[]>([]);
-  const [teamAwayData, setTeamAwayData] = useState<GameAttribute[]>([]);
 
   useEffect(() => {
     console.log('mounted');
@@ -39,7 +37,7 @@ const Game = () =>{
     resolveObject('game', item.keyName)
     setGameData(current =>
       current.filter(obj => {
-        return !(obj.keyName === item.keyName && obj.value == item.value)
+        return !(obj.keyName === item.keyName && obj.value === item.value)
       }),
     );
   }
@@ -49,7 +47,7 @@ const Game = () =>{
     setGameData(prevState => {
       const newState = prevState.map(obj => {
         // 👇️ if id equals 2, update the country property
-        if (obj.keyName === item.keyName && obj.value == item.value) {
+        if (obj.keyName === item.keyName && obj.value === item.value) {
           return {...obj, isReject: true};
         }
   
@@ -70,7 +68,7 @@ const Game = () =>{
         title: <a href={switchUrlForType(type)}>{title}</a>,
         dataIndex: 'keyName',
         key: 'keyName',
-        render: (text) => <a>{text}</a>,
+        render: (text) => <a href='#'>{text}</a>,
       },
       {
         title: 'discrepancy value',
@@ -84,7 +82,7 @@ const Game = () =>{
               // if (tag === 'resolved') {
               //   color = 'green';
               // }
-          if(item.keyName == 'id'||!item.isReject){
+          if(item.keyName === 'id'||!item.isReject){
             return ''
           }
           return (
@@ -99,7 +97,7 @@ const Game = () =>{
         key: 'action',
         width: 200,
         render: (item) => {
-          if(item.keyName=='id') return''
+          if(item.keyName==='id') return''
           return (
           <Space size="middle">
             <Button size='small' type="primary" danger

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { MenuProps, Space } from 'antd';
+import { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { Layout } from 'antd';
 

@@ -12,7 +12,7 @@ const instance = axios.create({
 // response parse
 instance.interceptors.response.use((response) => {
 
-    const {code, auto} = response.data
+    const {code} = response.data
     if (code === 401) {
         
     }

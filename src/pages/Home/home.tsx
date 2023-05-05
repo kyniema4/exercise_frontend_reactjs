@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Space, Table } from 'antd';
+// import { Link } from 'react-router-dom';
+import {  Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { getAllDiscrepancies } from '../../utils/api/api';
 import pairDataForGame from '../../utils/pair/pairDataForGame';
@@ -45,13 +45,13 @@ const Home =() => {
 
     
   const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
-    if(type == 0|| type== 1){
+    if(type === 0|| type=== 1){
       const columns: ColumnsType<GameAttribute> = [
         {
           title: <a href={switchUrlForType(type)}>{title}</a>,
           dataIndex: 'keyName',
           key: 'keyName',
-          render: (text) => <a>{text}</a>,
+          render: (text) => <a href='#'>{text}</a>,
         },
         {
           title: 'discrepancy value',
