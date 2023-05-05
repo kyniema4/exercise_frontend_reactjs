@@ -88,11 +88,6 @@ const Home =() => {
           render: (player) => player.id,
         },
         {
-          title: 'Team Id',
-          key: 'teamId',
-          dataIndex: 'id',
-        },
-        {
           title: 'Team',
           key: 'team',
           dataIndex: 'name',
@@ -137,6 +132,11 @@ const Home =() => {
         render: (player) => player.id,
       },
       {
+        title: 'Team',
+        key: 'team',
+        dataIndex: 'team',
+      },
+      {
         title: 'Rush Attempts',
         key: 'rushAttempts',
         dataIndex: 'rushAttempts',
@@ -171,7 +171,7 @@ const Home =() => {
       <div className='px-5 my-5'>
         <Table columns={generateColumns(0, 'Game Id')} dataSource={gameData} pagination={false} title={() => 'Game Discrepancies'} />
 
-        <Table columns={generateColumns(1, 'Team Id')} dataSource={teamData} pagination={false} title={() => 'Teams Discrepancies'} />
+        <Table columns={generateColumns(1, 'Team Id')} dataSource={teamData} pagination={false} title={() => 'Team Discrepancies'} />
 
         <Table columns={generateColumns(2, 'Player Id')} dataSource={playersData} pagination={false}title={() => 'Player Discrepancies'} />
       </div>

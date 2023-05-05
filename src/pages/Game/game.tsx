@@ -36,28 +36,28 @@ const Game = () =>{
 
   const resolveItem = (item:GameModel.Game,title='') =>{
     // resolveObject('game', item.keyName)
-    // setGameData(current =>
-    //   current.filter(obj => {
-    //     return !(obj.keyName === item.keyName && obj.value === item.value)
-    //   }),
-    // );
+    setGameData(prevState => {
+      const newState = prevState.map(obj => {
+        // 👇️ if id equals 2, update the country property
+        if (obj.id === item.id ) {
+          return {...obj, isReject: 1};
+        }
+  
+        // 👇️ otherwise return the object as is
+        return obj;
+      });
+  
+      return newState;
+    });
   }
 
   const rejectItem = (item:GameModel.Game,title ='') =>{
     // rejectObject('game', item.keyName)
-    // setGameData(prevState => {
-    //   const newState = prevState.map(obj => {
-    //     // 👇️ if id equals 2, update the country property
-    //     if (obj.keyName === item.keyName && obj.value === item.value) {
-    //       return {...obj, isReject: true};
-    //     }
-  
-    //     // 👇️ otherwise return the object as is
-    //     return obj;
-    //   });
-  
-    //   return newState;
-    // });
+    setGameData(current =>
+      current.filter(obj => {
+        return !(obj.id === item.id)
+      }),
+    );
     
   }
 
