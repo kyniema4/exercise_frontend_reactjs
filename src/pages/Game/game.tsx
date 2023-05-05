@@ -69,6 +69,7 @@ const Game = () =>{
         title: <a href={switchUrlForType(type)}>{title}</a>,
         dataIndex: 'id',
         key: 'id',
+        width: '30%',
       },
       // {
       //   title: 'home',
@@ -84,6 +85,7 @@ const Game = () =>{
         title: 'attendance',
         key: 'attendance',
         dataIndex: 'attendance',
+        width: '30%',
       },
       {
         title: 'Status',
