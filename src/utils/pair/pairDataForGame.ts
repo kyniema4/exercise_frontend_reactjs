@@ -1,18 +1,22 @@
 import { Game } from "../../model/Game";
 
-import { getFieldValue } from "./actionForField";
+import { getFieldValue, getSubFieldValue } from "./actionForField";
 
 
 const pairDataForGame = (data:any):Game[] =>{
     let games:Game[] = [];
-    let game:Game = {
-        id: data.game.id,
-        home: data.home.id,
-        away: data.away.id,
-        attendance: data.game.attendance,
-        isReject: 0
+    var isReject = getSubFieldValue('game', data.game.id)??0
+    if(isReject>=0){
+        let game:Game = {
+            id: data.game.id,
+            home: data.home.id,
+            away: data.away.id,
+            attendance: data.game.attendance,
+            isReject: isReject
+        }
+        games.push(game);
     }
-    games.push(game);
+    
     return games;
 }
 
