@@ -68,7 +68,7 @@ const Player = () =>{
         render: (player) => player.id,
       },
       {
-        title: 'teamId',
+        title: 'Team Id',
         key: 'teamId',
         dataIndex: 'teamId',
       },
@@ -78,12 +78,12 @@ const Player = () =>{
         dataIndex: 'team',
       },
       {
-        title: 'rush Attempts',
+        title: 'Rush Attempts',
         key: 'rushAttempts',
         dataIndex: 'rushAttempts',
       },
       {
-        title: 'rush touch downs',
+        title: 'Rush Touch Downs',
         key: 'rushTds',
         dataIndex: 'rushTds',
       },

@@ -60,16 +60,16 @@ const Home =() => {
           dataIndex: 'id',
           key: 'id',
         },
-        {
-          title: 'home',
-          key: 'home',
-          dataIndex: 'home',
-        },
-        {
-          title: 'away',
-          key: 'away',
-          dataIndex: 'away',
-        },
+        // {
+        //   title: 'home',
+        //   key: 'home',
+        //   dataIndex: 'home',
+        // },
+        // {
+        //   title: 'away',
+        //   key: 'away',
+        //   dataIndex: 'away',
+        // },
         {
           title: 'attendance',
           key: 'attendance',
@@ -86,7 +86,7 @@ const Home =() => {
           render: (player) => player.id,
         },
         {
-          title: 'teamId',
+          title: 'Team Id',
           key: 'teamId',
           dataIndex: 'id',
         },
@@ -96,12 +96,12 @@ const Home =() => {
           dataIndex: 'name',
         },
         {
-          title: 'rush Attempts',
+          title: 'Rush Attempts',
           key: 'rushAttempts',
           dataIndex: 'rushAttempts',
         },
         {
-          title: 'rush touch downs',
+          title: 'Rush Touch Downs',
           key: 'rushTds',
           dataIndex: 'rushTds',
         },
@@ -135,7 +135,7 @@ const Home =() => {
         render: (player) => player.id,
       },
       {
-        title: 'teamId',
+        title: 'Team Id',
         key: 'teamId',
         dataIndex: 'teamId',
       },
@@ -145,12 +145,12 @@ const Home =() => {
         dataIndex: 'team',
       },
       {
-        title: 'rush Attempts',
+        title: 'Rush Attempts',
         key: 'rushAttempts',
         dataIndex: 'rushAttempts',
       },
       {
-        title: 'rush touch downs',
+        title: 'Rush Touch Downs',
         key: 'rushTds',
         dataIndex: 'rushTds',
       },

@@ -68,12 +68,12 @@ const Team = () => {
 
   const generateColumns= (type =0, title = 'Title'):ColumnsType<any>  => {
     const columns: ColumnsType<GameAttribute> = [
+      // {
+      //   title: <a href={switchUrlForType(type)}>{title}</a>,
+      //   render: (player) => player.id,
+      // },
       {
-        title: <a href={switchUrlForType(type)}>{title}</a>,
-        render: (player) => player.id,
-      },
-      {
-        title: 'teamId',
+        title: 'Team Id',
         key: 'teamId',
         dataIndex: 'id',
       },
@@ -83,12 +83,12 @@ const Team = () => {
         dataIndex: 'name',
       },
       {
-        title: 'rush Attempts',
+        title: 'Rush Attempts',
         key: 'rushAttempts',
         dataIndex: 'rushAttempts',
       },
       {
-        title: 'rush touch downs',
+        title: 'Rush Touch Downs',
         key: 'rushTds',
         dataIndex: 'rushTds',
       },

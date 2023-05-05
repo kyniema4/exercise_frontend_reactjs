@@ -70,16 +70,16 @@ const Game = () =>{
         dataIndex: 'id',
         key: 'id',
       },
-      {
-        title: 'home',
-        key: 'home',
-        dataIndex: 'home',
-      },
-      {
-        title: 'away',
-        key: 'away',
-        dataIndex: 'away',
-      },
+      // {
+      //   title: 'home',
+      //   key: 'home',
+      //   dataIndex: 'home',
+      // },
+      // {
+      //   title: 'away',
+      //   key: 'away',
+      //   dataIndex: 'away',
+      // },
       {
         title: 'attendance',
         key: 'attendance',
